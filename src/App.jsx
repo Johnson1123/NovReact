@@ -1,33 +1,48 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+
 import "./App.css";
+import Avater from "./Avater";
+import myAvater from "./assets/image/avater.jpg";
+import Links from "./component/Links";
 
 export function App() {
-  const [count, setCount] = useState(0);
-  const title = "My React Class";
+  const [toggle, setToggle] = useState(true);
+
+  const changeToggle = () => {
+    setToggle(!toggle);
+    console.log(toggle);
+  };
+
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      {/* <div className="">
+        <Links>Home</Links>
+        <Links>about</Links>
+        <Links>contact</Links>
+      </div> */}
+      <form action="">
+        <label htmlFor="">Email</label>
+        <input type="email" name="" id="" />
+        <input type="submit" value="Register" />
+      </form>
+      <div className="" style={{ display: "flex" }}>
+        <Avater
+          name="Segun Felix"
+          image="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+        />
+        <Avater
+          name="Pastor Damilola"
+          image="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+        />
+        <Avater
+          name="Peace Maker"
+          image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
+        />
+        <Avater name="Desmon Abdu" image={myAvater} />
       </div>
-      <h1>{title}</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p dataset="">
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        // Click on the Vite and React logos to learn more //{" "}
-      </p>
+
+      <button onClick={changeToggle}>Change</button>
+      <p>{toggle}</p>
     </>
   );
 }
