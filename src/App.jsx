@@ -6,43 +6,71 @@ import myAvater from "./assets/image/avater.jpg";
 import Links from "./component/Links";
 
 export function App() {
-  const [toggle, setToggle] = useState(true);
+  const [formData, setFormaData] = useState({
+    email: "",
+    password: "",
+  });
+  const [erremail, seterrEmail] = useState("");
+  const [errpassword, SeterrPassword] = useState("");
 
-  const changeToggle = () => {
-    setToggle(!toggle);
-    console.log(toggle);
+  const error = {};
+  const checkError = () => {
+    if (email == "" || email.length < 3) {
+      error.email = "email cannot empty or invalid email";
+    }
+    if (password == "" || password.length < 3) {
+      error.password = "password is required or minimum of 3 charater";
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    checkError();
+    if (error.email) {
+      seterrEmail(() => error.email);
+    }
+    if (error.password) {
+      SeterrPassword(() => error.password);
+    }
+    if (erremail.email || errpassword) {
+      return;
+    } else localStorage.setItem("user", JSON.stringify({ email, password }));
+  };
+
+  const deleteLocal = () => {
+    localStorage.removeItem("user");
   };
 
   return (
     <>
-      {/* <div className="">
-        <Links>Home</Links>
-        <Links>about</Links>
-        <Links>contact</Links>
-      </div> */}
-      <form action="">
+      <form action="" onSubmit={handleSubmit}>
         <label htmlFor="">Email</label>
-        <input type="email" name="" id="" />
+        <br />
+        <input
+          type="email"
+          name=""
+          // onBlur={handleEmail}
+          id="email"
+          onChange={(e) => setEmail(e.target.value)}
+          className={`${error.email ? "error" : ""}`}
+        />
+        <p className="error">{erremail}</p>
+        <br />
+        <label htmlFor="">Password</label>
+        <br />
+        <input
+          type="password"
+          name=""
+          id="email"
+          className=""
+          onChange={(e) => SetPassword(e.target.value)}
+          style={{ height: "25px" }}
+        />
+        <p className="error">{errpassword}</p>
+        <br />
         <input type="submit" value="Register" />
       </form>
-      <div className="" style={{ display: "flex" }}>
-        <Avater
-          name="Segun Felix"
-          image="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
-        />
-        <Avater
-          name="Pastor Damilola"
-          image="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
-        />
-        <Avater
-          name="Peace Maker"
-          image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60"
-        />
-        <Avater name="Desmon Abdu" image={myAvater} />
-      </div>
-
-      <button onClick={changeToggle}>Change</button>
-      <p>{toggle}</p>
+      <button onClick={deleteLocal}>delete Items</button>
     </>
   );
 }
