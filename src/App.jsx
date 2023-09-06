@@ -6,10 +6,8 @@ import myAvater from "./assets/image/avater.jpg";
 import Links from "./component/Links";
 
 export function App() {
-  const [formData, setFormaData] = useState({
-    email: "",
-    password: "",
-  });
+  const [password, SetPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [erremail, seterrEmail] = useState("");
   const [errpassword, SeterrPassword] = useState("");
 
@@ -36,10 +34,21 @@ export function App() {
       return;
     } else localStorage.setItem("user", JSON.stringify({ email, password }));
   };
+  let user;
+  if (0) {
+    user = {
+      email: "yemi",
+    };
+  } else {
+    user = {
+      email: "isreal",
+    };
+  }
+  console.log(user);
 
-  const deleteLocal = () => {
-    localStorage.removeItem("user");
-  };
+  // const deleteLocal = () => {
+  //   localStorage.removeItem("user");
+  // };
 
   return (
     <>
@@ -54,7 +63,7 @@ export function App() {
           onChange={(e) => setEmail(e.target.value)}
           className={`${error.email ? "error" : ""}`}
         />
-        <p className="error">{erremail}</p>
+
         <br />
         <label htmlFor="">Password</label>
         <br />
@@ -70,7 +79,8 @@ export function App() {
         <br />
         <input type="submit" value="Register" />
       </form>
-      <button onClick={deleteLocal}>delete Items</button>
+      {user.email !== "yemi" || <p>{user.email + " " + "Adeyanju"}</p>}
+      {/* <button onClick={deleteLocal}>delete Items</button> */}
     </>
   );
 }
