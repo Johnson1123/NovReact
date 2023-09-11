@@ -1,34 +1,39 @@
 import { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import "./App.css";
-import Avater from "./Avater";
-import myAvater from "./assets/image/avater.jpg";
-import Links from "./component/Links";
-import axios from "axios";
-import Accordion from "./Accordion";
+import Home from "./page/Home";
+import Product from "./page/Product";
+import About from "./page/About";
+import ProductDetails from "./page/ProductDetails";
+// import Avater from "./Avater";
+// import myAvater from "./assets/image/avater.jpg";
+// import Links from "./component/Links";
+// import axios from "axios";
+// import Accordion from "./Accordion";
 
 export function App() {
-  const [products, setproduct] = useState([]);
-  const getProduct = async () => {
-    try {
-      const res = await axios.get("https://dummyjson.com/products");
-      setproduct(res.data.products);
-      localStorage.setItem("products", JSON.stringify(res));
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  // const [products, setproduct] = useState([]);
+  // const getProduct = async () => {
+  //   try {
+  //     const res = await axios.get("https://dummyjson.com/products");
+  //     setproduct(res.data.products);
+  //     localStorage.setItem("products", JSON.stringify(res));
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
-  useEffect(() => {
-    getProduct();
-  }, []);
-  console.log(products);
+  // useEffect(() => {
+  //   getProduct();
+  // }, []);
+  // console.log(products);
   // const [password, SetPassword] = useState("");
   // const [email, setEmail] = useState("");
   // const [erremail, seterrEmail] = useState("");
   // const [errpassword, SeterrPassword] = useState("");
 
-  const error = {};
+  // const error = {};
   // const checkError = () => {
   //   if (email == "" || email.length < 3) {
   //     error.email = "email cannot empty or invalid email";
@@ -69,36 +74,14 @@ export function App() {
 
   return (
     <>
-      {/* <form action="" onSubmit={handleSubmit}>
-        <label htmlFor="">Email</label>
-        <br />
-        <input
-          type="email"
-          name=""
-          // onBlur={handleEmail}
-          id="email"
-          onChange={(e) => setEmail(e.target.value)}
-          className={`${error.email ? "error" : ""}`}
-        />
-
-        <br />
-        <label htmlFor="">Password</label>
-        <br />
-        <input
-          type="password"
-          name=""
-          id="email"
-          className=""
-          onChange={(e) => SetPassword(e.target.value)}
-          style={{ height: "25px" }}
-        />
-        <p className="error">{errpassword}</p>
-        <br />
-        <input type="submit" value="Register" />
-      </form> */}
-      {/* {user.email !== "yemi" || <p>{user.email + " " + "Adeyanju"}</p>} */}
-      {/* <button onClick={deleteLocal}>delete Items</button> */}
-      <Accordion />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product" element={<Product />} />
+          <Route path="/productDetail/:name" element={<ProductDetails />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
