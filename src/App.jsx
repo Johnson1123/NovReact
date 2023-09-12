@@ -6,19 +6,19 @@ import Home from "./page/Home";
 import Product from "./page/Product";
 import About from "./page/About";
 import ProductDetails from "./page/ProductDetails";
-// import Avater from "./Avater";
+import Avater from "./Avater";
 // import myAvater from "./assets/image/avater.jpg";
 // import Links from "./component/Links";
-// import axios from "axios";
+import axios from "axios";
 // import Accordion from "./Accordion";
 
 export function App() {
-  // const [products, setproduct] = useState([]);
+  const [products, setproduct] = useState([]);
   // const getProduct = async () => {
   //   try {
   //     const res = await axios.get("https://dummyjson.com/products");
   //     setproduct(res.data.products);
-  //     localStorage.setItem("products", JSON.stringify(res));
+  //     localStorage.setItem("products", JSON.stringify(res.data.products));
   //   } catch (error) {
   //     console.log(error.message);
   //   }
@@ -78,7 +78,7 @@ export function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product" element={<Product />} />
-          <Route path="/productDetail/:name" element={<ProductDetails />} />
+          <Route path="/productDetail/:id" element={<ProductDetails />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>

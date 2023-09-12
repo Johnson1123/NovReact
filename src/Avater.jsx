@@ -1,17 +1,21 @@
-const Avater = (props) => {
+import { Link } from "react-router-dom";
+
+const Avater = ({ item, key }) => {
   return (
-    <div>
-      <img
-        src={props.image}
-        alt=""
-        style={{
-          width: "150px",
-          height: "150px",
-          borderRadius: "50%",
-          objectFit: "cover",
-        }}
-      />
-      <p className="">{props.name}</p>
+    <div key={key}>
+      <Link to={`/productDetail/${item.id}`}>
+        <img
+          src={item.images[0]}
+          alt=""
+          style={{
+            width: "150px",
+            height: "150px",
+            borderRadius: "50%",
+            objectFit: "cover",
+          }}
+        />
+      </Link>
+      <p className="">{item.title}</p>
     </div>
   );
 };
