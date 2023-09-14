@@ -7,17 +7,7 @@ function Product() {
     JSON.parse(localStorage.getItem("products"))
   );
 
-  return (
-    <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
-      {products ? (
-        products.map((item, i) => {
-          return <Avater item={item} key={i} />;
-        })
-      ) : (
-        <p>Loading ...</p>
-      )}
-    </div>
-  );
+  return <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}></div>;
 }
 
 export default Product;

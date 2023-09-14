@@ -15,7 +15,7 @@ const Avater = ({ item, key }) => {
           }}
         />
       </Link>
-      <p className="">{item.title}</p>
+      <p className="">{item.price}</p>
     </div>
   );
 };
