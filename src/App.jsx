@@ -76,10 +76,11 @@ export function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/product" element={<Product />} />
-          <Route path="/productDetail/:id" element={<ProductDetails />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/" element={<Home />}>
+            <Route path="/product" element={<Product />} />
+            <Route path="/productDetail/:id" element={<ProductDetails />} />
+            <Route path="/about" element={<About />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
