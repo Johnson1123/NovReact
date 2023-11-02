@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import { BsCartPlus } from "react-icons/bs";
 function Header() {
   const navigate = useNavigate();
+  const [cartLength, setCarLength] = useState(0);
+  const checkCartLen = (item) => {
+    const cartItem = localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart"))
+      : [];
+    setCarLength(cartItem.length);
+  };
 
   const handleClick = () => {
     navigate("/");
   };
 
+  // useEffect(() => {
+  //   checkCartLen();
+  // }, []);
   return (
     <header style={{ display: "flex", gap: 5 }}>
       <NavLink
@@ -37,7 +48,10 @@ function Header() {
       >
         About
       </NavLink>
-      <button onClick={handleClick}>Go Home</button>
+      <div>
+        <span>{cartLength}</span>
+        <BsCartPlus size={25} color="green" />
+      </div>
     </header>
   );
 }
