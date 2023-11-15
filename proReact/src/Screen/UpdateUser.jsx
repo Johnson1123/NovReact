@@ -35,7 +35,7 @@ function Update() {
           },
         }
       );
-      await window.localStorage.setItem("user", JSON.stringify(res.data.data));
+      window.localStorage.setItem("user", await JSON.stringify(res.data));
       navigate("/dashboard");
     } catch (error) {
       console.log(error);
